@@ -1,7 +1,13 @@
-[![License GPL 3][badge-license]](http://www.gnu.org/licenses/gpl-3.0.txt)
-[![MELPA](http://melpa.org/packages/solarized-theme-badge.svg)](http://melpa.org/#/solarized-theme)
-[![MELPA Stable](http://stable.melpa.org/packages/solarized-theme-badge.svg)](http://stable.melpa.org/#/solarized-theme)
-[![Join the chat at https://gitter.im/bbatsov/solarized-emacs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bbatsov/solarized-emacs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<!-- [![License GPL 3][badge-license]](http://www.gnu.org/licenses/gpl-3.0.txt) -->
+<!-- [![MELPA](http://melpa.org/packages/solarized-theme-badge.svg)](http://melpa.org/#/solarized-theme) -->
+<!-- [![MELPA Stable](http://stable.melpa.org/packages/solarized-theme-badge.svg)](http://stable.melpa.org/#/solarized-theme) -->
+<!-- [![Join the chat at https://gitter.im/bbatsov/solarized-emacs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bbatsov/solarized-emacs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) -->
+
+# Yet Another Solarized theme for Emacs
+
+This package is a fork of [solarized-emacs](https://github.com/bbatsov/solarized-emacs) reset to commit [55cd77b](https://github.com/bbatsov/solarized-emacs/commit/55cd77b61b6968048c61e13358ba487d217f24c0), which was the last commit before a [series](https://github.com/bbatsov/solarized-emacs/pull/330) of [breaking changes](https://github.com/bbatsov/solarized-emacs/issues/354) were made.
+
+**The rest of this readme and all other files in the project are currently unchanged.  At this time, to use this fork in place of `solarized-emacs`, it must be installed manually.**
 
 # Solarized for Emacs
 
