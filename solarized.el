@@ -313,8 +313,8 @@ customize the resulting theme."
                                 :background ,s-mode-line-inactive-bg
                                 :box (:line-width 1 :color ,s-mode-line-inactive-bg
                                                   :style unspecified)))))
-     `(region ((,class (:foreground ,base03 :background ,base1))))
-     `(secondary-selection ((,class (:background ,base02))))
+     `(region ((,class (:foreground ,base03 :background ,base1 :extend t))))
+     `(secondary-selection ((,class (:background ,base02 :extend t))))
      `(shadow ((,class (:foreground ,base01))))
      `(success ((,class (:foreground ,green ))))
      `(trailing-whitespace ((,class (:background ,red))))
@@ -675,9 +675,9 @@ customize the resulting theme."
      `(deadgrep-regexp-metachar-face ((,class (:inherit font-lock-constant-face))))
      `(deadgrep-search-term-face ((,class (:inherit font-lock-variable-name-face))))
 ;;;;; diff
-     `(diff-added   ((,class (:foreground ,green))))
-     `(diff-changed ((,class (:foreground ,blue))))
-     `(diff-removed ((,class (:foreground ,red))))
+     `(diff-added   ((,class (:foreground ,green :extend t))))
+     `(diff-changed ((,class (:foreground ,blue :extend t))))
+     `(diff-removed ((,class (:foreground ,red :extend t))))
      `(diff-refine-added
        ((,light-class
          (:background ,(solarized-color-blend "#ddffdd" green 0.7)))
@@ -693,33 +693,33 @@ customize the resulting theme."
          (:background ,(solarized-color-blend "#ffdddd" red 0.7)))
         (,dark-class
          (:background ,(solarized-color-blend "#664444" red 0.7)))))
-     `(diff-header  ((,class (:background ,base03))))
+     `(diff-header  ((,class (:background ,base03 :extend t))))
      `(diff-file-header
-       ((,class (:background ,base03 :foreground ,base0 :weight bold))))
+       ((,class (:background ,base03 :foreground ,base0 :weight bold :extend t))))
 ;;;;; diff-hl
      `(diff-hl-change ((,class (:background ,blue-lc  :foreground ,blue-hc))))
      `(diff-hl-delete ((,class (:background ,red-lc  :foreground ,red-hc))))
      `(diff-hl-insert ((,class (:background ,green-lc  :foreground ,green-hc))))
      `(diff-hl-unknown ((,class (:background ,cyan-lc   :foreground ,cyan-hc))))
 ;;;;; ediff
-     `(ediff-fine-diff-A ((,class (:background ,orange-lc))))
-     `(ediff-fine-diff-B ((,class (:background ,green-lc))))
-     `(ediff-fine-diff-C ((,class (:background ,yellow-lc))))
+     `(ediff-fine-diff-A ((,class (:background ,orange-lc :extend t))))
+     `(ediff-fine-diff-B ((,class (:background ,green-lc :extend t))))
+     `(ediff-fine-diff-C ((,class (:background ,yellow-lc :extend t))))
 
-     `(ediff-current-diff-C ((,class (:background ,blue-lc))))
+     `(ediff-current-diff-C ((,class (:background ,blue-lc :extend t))))
 
      `(ediff-even-diff-A ((,class (:background ,base01
-                                               :foreground ,base3 ))))
+                                               :foreground ,base3 :extend t))))
      `(ediff-odd-diff-A ((,class (:background ,base01
-                                              :foreground ,base03 ))))
+                                              :foreground ,base03 :extend t))))
      `(ediff-even-diff-B ((,class (:background ,base01
-                                               :foreground ,base03 ))))
+                                               :foreground ,base03 :extend t))))
      `(ediff-odd-diff-B ((,class (:background ,base01
-                                              :foreground ,base03 ))))
+                                              :foreground ,base03 :extend t))))
      `(ediff-even-diff-C ((,class (:background ,base01
-                                               :foreground ,base0 ))))
+                                               :foreground ,base0 :extend t))))
      `(ediff-odd-diff-C ((,class (:background ,base01
-                                              :foreground ,base03 ))))
+                                              :foreground ,base03 :extend t))))
 
 ;;;;;; alternative ediff (not finished)
      ;; `(ediff-fine-diff-A ((,class (
@@ -1172,8 +1172,10 @@ customize the resulting theme."
 ;;;;; highlight-symbol
      `(highlight-symbol-face ((,class (:foreground ,magenta))))
 ;;;;; hl-line-mode
-     `(hl-line ((,class (:background ,base02))))
-     `(hl-line-face ((,class (:background ,base02))))
+     `(hl-line ((,class (,@(and (>= emacs-major-version 27) '(:extend t))
+                         :background ,base02))))
+     `(hl-line-face ((,class (,@(and (>= emacs-major-version 27) '(:extend t))
+                              :background ,base02))))
 ;;;;; hydra
      `(hydra-face-red ((,class (:foreground ,red))))
      `(hydra-face-blue ((,class (:foreground ,blue))))
@@ -1411,26 +1413,49 @@ customize the resulting theme."
      `(macrostep-expansion-highlight-face ((,class (:background ,base02))))
 ;;;;; magit
 ;;;;;; headings and diffs
-     `(magit-section-highlight           ((t (:background ,base02))))
-     `(magit-section-heading             ((t (:foreground ,yellow :weight bold))))
-     `(magit-section-heading-selection   ((t (:foreground ,orange :weight bold))))
-     `(magit-diff-file-heading           ((t (:weight bold))))
-     `(magit-diff-file-heading-highlight ((t (:background ,base02))))
-     `(magit-diff-file-heading-selection ((t (:background ,base02
-                                                          :foreground ,orange))))
+     `(magit-section-highlight
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,base02))))
+     `(magit-section-heading
+       ((t (;;,@(and (>= emacs-major-version 27) '(:extend t))
+            :foreground ,yellow
+            :weight bold))))
+     `(magit-section-heading-selection
+       ((t (;;,@(and (>= emacs-major-version 27) '(:extend t))
+            :foreground ,orange
+            :weight bold))))
+     `(magit-diff-file-heading
+       ((t (;;,@(and (>= emacs-major-version 27) '(:extend t))
+            :weight bold))))
+     `(magit-diff-file-heading-highlight
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,base02))))
+     `(magit-diff-file-heading-selection
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,base02
+            :foreground ,orange))))
      `(magit-diff-hunk-heading
-       ((t (:background ,(solarized-color-blend yellow base03 0.1)))))
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,(solarized-color-blend yellow base03 0.1)))))
      `(magit-diff-hunk-heading-highlight
-       ((t (:background ,(solarized-color-blend yellow base02 0.1)))))
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,(solarized-color-blend yellow base02 0.1)))))
      `(magit-diff-hunk-heading-selection
-       ((t (:background ,(solarized-color-blend yellow base02 0.1)
-                        :foreground ,orange
-                        :weight bold))))
-     `(magit-diff-lines-heading          ((t (:background ,orange
-                                                          :foreground ,base3))))
-     `(magit-diff-context-highlight      ((t (:background ,base02))))
-     `(magit-diffstat-added              ((t (:foreground ,green))))
-     `(magit-diffstat-removed            ((t (:foreground ,red))))
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,(solarized-color-blend yellow base02 0.1)
+            :foreground ,orange
+            :weight bold))))
+     `(magit-diff-lines-heading
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,orange
+            :foreground ,base3))))
+     `(magit-diff-context-highlight
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,base02))))
+     `(magit-diffstat-added
+       ((t (:foreground ,green))))
+     `(magit-diffstat-removed
+       ((t (:foreground ,red))))
 ;;;;;; process
      `(magit-process-ok    ((t (:foreground ,green :weight bold))))
      `(magit-process-ng    ((t (:foreground ,red   :weight bold))))
@@ -1451,9 +1476,13 @@ customize the resulting theme."
      `(magit-bisect-skip ((t (:foreground ,yellow))))
      `(magit-bisect-bad  ((t (:foreground ,red))))
 ;;;;;; blame
-     `(magit-blame-highlight ((t (:background ,base02))))
-     `(magit-blame-heading   ((t (:inherit magit-blame-highlight
-                                           :box (:color ,base02 :line-width 2)))))
+     `(magit-blame-highlight
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,base02))))
+     `(magit-blame-heading
+       ((t (,@(and (>= emacs-major-version 27) '(:extend t))
+            :background ,base02
+            :box (:color ,base02 :line-width 2)))))
      `(magit-blame-summary   ((t (:foreground ,base0))))
      `(magit-blame-hash      ((t (:foreground ,violet))))
      `(magit-blame-name      ((t (:foreground ,violet))))
@@ -1603,7 +1632,9 @@ customize the resulting theme."
      `(mu4e-view-url-number-face ((,class (:foreground ,yellow :weight normal))))
      `(mu4e-warning-face ((,class (:foreground ,red :slant normal :weight bold))))
      `(mu4e-header-highlight-face
-       ((,class (:inherit unspecified :foreground unspecified :background ,base02
+       ((,class (:inherit unspecified
+                          ,@(and (>= emacs-major-version 27) '(:extend t))
+                          :foreground unspecified :background ,base02
                           :underline unspecified  :weight unspecified))))
      `(mu4e-view-contact-face ((,class (:foreground ,base0  :weight normal))))
      `(mu4e-view-header-key-face ((,class (:inherit message-header-name :weight normal))))
@@ -1723,24 +1754,32 @@ customize the resulting theme."
      `(org-headline-done ((,class (:foreground ,green))))
      `(org-hide ((,class (:foreground ,base03))))
      `(org-level-1 ((,class (:inherit ,s-variable-pitch :foreground ,orange
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       ,@(when solarized-scale-org-headlines
                                           (list :height solarized-height-plus-4))))))
      `(org-level-2 ((,class (:inherit ,s-variable-pitch :foreground ,green
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       ,@(when solarized-scale-org-headlines
                                           (list :height solarized-height-plus-3))))))
      `(org-level-3 ((,class (:inherit ,s-variable-pitch :foreground ,blue
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       ,@(when solarized-scale-org-headlines
                                           (list :height solarized-height-plus-2))))))
      `(org-level-4 ((,class (:inherit ,s-variable-pitch :foreground ,yellow
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       ,@(when solarized-scale-org-headlines
                                           (list :height solarized-height-plus-1))))))
      `(org-level-5 ((,class (:inherit ,s-variable-pitch
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       :foreground ,cyan))))
      `(org-level-6 ((,class (:inherit ,s-variable-pitch
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       :foreground ,green))))
      `(org-level-7 ((,class (:inherit ,s-variable-pitch
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       :foreground ,red))))
      `(org-level-8 ((,class (:inherit ,s-variable-pitch
+                                      ,@(and (>= emacs-major-version 27) '(:extend t))
                                       :foreground ,blue))))
      `(org-link ((,class (:foreground ,yellow :underline t))))
      `(org-meta-line ((,class (:foreground ,base01 :slant italic))))
@@ -1782,25 +1821,37 @@ customize the resulting theme."
      `(org-mode-line-clock-overrun ((,class (:inherit mode-line :background ,red))))
 ;;;;; outline
      `(outline-1 ((,class (:inherit ,s-variable-pitch :foreground ,orange
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))
                                     ,@(and solarized-scale-outline-headlines
                                            (list :height solarized-height-plus-4))))))
      `(outline-2 ((,class (:inherit ,s-variable-pitch :foreground ,green
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))
                                     ,@(and solarized-scale-outline-headlines
                                            (list :height solarized-height-plus-3))))))
      `(outline-3 ((,class (:inherit ,s-variable-pitch :foreground ,blue
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))
                                     ,@(and solarized-scale-outline-headlines
                                            (list :height solarized-height-plus-2))))))
      `(outline-4 ((,class (:inherit ,s-variable-pitch :foreground ,yellow
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))
                                     ,@(when solarized-scale-outline-headlines
                                         (list :height solarized-height-plus-1))))))
-     `(outline-5 ((,class (:inherit ,s-variable-pitch :foreground ,cyan))))
-     `(outline-6 ((,class (:inherit ,s-variable-pitch :foreground ,green))))
-     `(outline-7 ((,class (:inherit ,s-variable-pitch :foreground ,red))))
-     `(outline-8 ((,class (:inherit ,s-variable-pitch :foreground ,blue))))
+     `(outline-5 ((,class (:inherit ,s-variable-pitch :foreground ,cyan
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))))))
+     `(outline-6 ((,class (:inherit ,s-variable-pitch :foreground ,green
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))))))
+     `(outline-7 ((,class (:inherit ,s-variable-pitch :foreground ,red
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))))))
+     `(outline-8 ((,class (:inherit ,s-variable-pitch :foreground ,blue
+                                    ,@(and (>= emacs-major-version 27) '(:extend t))))))
 ;;;;; outline-minor-faces
-     `(outline-minor-0 ((,class (:weight bold :background ,s-base2))))
+     `(outline-minor-0
+       ((,class (,@(and (>= emacs-major-version 27) '(:extend t))
+                 :weight bold
+                 :background ,s-base2))))
      `(outline-minor-1
-       ((,class (:inherit (outline-minor-0 outline-1)
+       ((,class (,@(and (>= emacs-major-version 27) '(:extend t))
+                 :inherit (outline-minor-0 outline-1)
                  :background ,(solarized-color-blend s-base3 yellow .9)))))
 ;;;;; paren-face
      `(paren-face  ((,class (:foreground ,base01))))
